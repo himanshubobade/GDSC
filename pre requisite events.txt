@@ -1,0 +1,35 @@
+AISH
+tech events
+pre - python
+1.ML
+2.NLP
+3.CV
+4.quiz
+
+Aneesh
+
+Swastik
+1. network security
+Computer Security - Basics
+Internet security
+domain name DNS
+Email Security 
+Chatting Messenger
+port scanning
+IP theft
+identity attacks
+password cracking and prevention
+mobile phone and online apps hacking
+Types of attacks
+website hacking
+internet abuse/reporting
+cyber law
+Earning money(bug bounties etc)
+
+Samip
+
+Himanshu
+1. kahoot quizzes
+2.
+3.
+4.

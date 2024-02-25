@@ -1,0 +1,115 @@
+Hello guys!! Good Afternoon. My name is Himanshu Bobade, I'm the technical team lead at GDSC BVCOENM. This is our very first machine learning based event. In today's session we are mainly going to focus on Neural Networks with some basics and a hands on practical of YOLO architecture for Object detection. 
+
+Okay. So firstly what is machine learning? Can I get active responses? 
+These terms or buzzwords are often misinterpreted or misunderstood and used in place of each other due to lack of knowledge. You often must have came across terms like data analytics, data mining, artificial intelligence, deep learning, big data, data science. But what exactly is Machine learning? Machine learning is the study of computer algorithms that can improve automatically through experience and by the use of data. Computer or any machine understands only binary language, the language of zeros and ones. Then how can something so primitive be so intilligent? The answer is computers are tremendously fast and that is the only key features they have. When we talk about machine learning making our lives easy, we are not wrong! We humans have made machines smarter by writing tremendous amount of algorithms that can process the data, find the patterns in the data, and make it smarter to predict an output. So the questions is, are machines smarter or not? The answer is it is us who make them smarter.
+
+Here is to give you a clearer illustartion of the overlapping of the domains and subdomains.
+
+But today we wont talk about the basics of what is a supervised, unsupervised ml techniques. Every ml workshop or tutorial will drive you through this basics. Instead of making the redundant efforts, we thought of telling you more about basics of neural networks. A neural network is a series of algorithms that endeavors to recognize underlying relationships in a set of data through a process that mimics the way the human brain operates. In this sense, neural networks refer to systems of neurons, either organic or artificial in nature. And yes, idts all of you understood it. So lets try to understand it with an example.
+
+So I hope it gave you a basic idea of how the nn works!!Moving towards a practical appraoch.
+
+Now consider the inputs to be x1,x2,x3. where w1,w2,w3 are the weights. what are these weights? I hope everyone has solved linear equation with two variables in your school times. we used to have 2 variables x and y to determine the straight line equation. The equation would look like ax+by=c lets make it simpler for you. lets make it as ax1+bx2=c. here x1 and x2 are the variables. now c is the output.  we have to adjust a and b in such a way that for any given values of x1 and x2 the answer should be close to c. lets subatitute a and b by w1 and w2. the equation turns out to be w1*x1+w2*x2 ~= c. The baseline is that we are going to have multiple variables and our task is to create weights such that we approach towards or close to c.
+
+Now to adjust the values of C, we have a few functions. I won't dive into the depth of these equations. But if anybody wants to know the mathematics please feel free to contact me. I would love to explain the mathematics behind this. And also, if you think you have to go thoroughly through all of the statistics, its wrong. there are prebuilt libraries for doing all of this. So now i would demonstrate a small neural network.
+
+This is the input and output table.
+
+import numpy as np
+def sigmoid(x):
+    return 1/(1+np.exp(-x))
+
+def sigmoid_derivative(x):
+    return x*(1-x)
+
+training_inputs = np.array([[0,0,1],
+                            [1,1,1],
+                            [1,0,1],
+                            [0,1,1]])
+
+training_outputs = np.array([[0,1,1,0]]).T
+np.random.seed(1)
+synaptic_weights = 2*np.random.random((3,1))-1
+#print("Random starting Synaptic weights",synaptic_weights)
+
+for iteration in range(1000):
+    input_layer = training_inputs
+    outputs = sigmoid(np.dot(input_layer, synaptic_weights))
+    error = training_outputs - outputs
+    adjustments = error*sigmoid_derivative(outputs)
+    synaptic_weights += np.dot(input_layer.T, adjustments)
+
+#print(synaptic_weights)
+print(outputs)
+
+
+
+Any questions??
+
+Handing over to you aneesh
+
+Dataset info. Now, this is a very crucial part to be understood. People out there use various pretrained model and mislead others that they have made the entire project on their own. But the ground truth fact is that someone else worked on training the model from scratch and others just made use of that model. Today we are going to learn to make our own object detection model from scratch. Right from gathering the entire data, to labelling the data, preprocessing it and lastly training and testing it on real life images.
+
+Thankyou aneesh for the wonderful explanation!!
+
+moving forward, as it will take time to annotate/label every single image, we already created  a dataset with 3 classes that is dataset of objects like car, bike and mobile. every class has 200 images and 200 corresponding text files. For 3 classes there are a total of 600 images and 600 text files and 1 classes.txt file containing the names of all the classes.
+
+So firstly go and Open colab and your google drive
+
+In drive, make folder "yolo_custom_model_Training"
+make backup, custom_weight (https://pjreddie.com/media/files/darknet53.conv.74) folders in drive
+
+Activate GPU
+Mount your drive
+
+from google.colab import drive
+drive.mount('/content/drive', force_remount=True)
+
+
+Change the directory
+!ls '/content/drive/My Drive/yolo_custom_model_Training'
+!pwd
+
+Unzip the file
+!unzip '/content/drive/My Drive/yolo_custom_model_Training/custom_data.zip' -d '/content/drive/My Drive/yolo_custom_model_Training/'
+
+after that clone the darknet repository
+!git clone 'https://github.com/AlexeyAB/darknet.git' '/content/drive/My Drive/yolo_custom_model_Training/darknet'
+
+change the directory
+%cd /content/drive/My Drive/yolo_custom_model_Training/darknet
+
+go to darknet and download make file
+GPU = 1
+CUDNN = 1
+OPENCV = 1
+
+go to darknet/cfg folder and download yolov3.cfg
+uncomment training batch and subdivisions
+line 20 - max_batches = tells you how many iterations - number of classes * 2000 = 3*2000 = 6000
+line 22 - steps=5800,6200
+search for yolo
+line 607
+classes = 3
+line 603 - change filters of preceding layers = (num of class + 5)*3 = 3+5 * 3 = 24
+line 689,696 same 776,783
+
+run the make file to compile the darknet repo
+!make
+#!chmod +x *.sh
+
+change directory
+%cd /content/drive/My Drive/yolo_custom_model_Training
+
+to check if darknet is working fine
+!darknet/darknet
+
+copy paste the 2 python codes
+!python custom_data/creating-files-data-and-name.py
+!python custom_data/creating-train-and-test-txt-files.py
+
+explain labelled_data.data
+
+run the model training part
+!darknet/darknet detector train custom_data/labelled_data.data darknet/cfg/yolov3_custom.cfg custom_weight/darknet53.conv.74 -dont_show
+

@@ -1,0 +1,43 @@
+Good afternoon everyone,
+First of all, Thankyou for being here today.
+My name is Samip Hegde and I'm a Google Developer Student Club's technical team 2 member, a Dancer, a cybersecurity enthusiast and of course a final year computer engineering student!
+So, I'll be taking over todays session and also you might be wondering what today's session is going to be about!
+well its just the way the name suggests - READY, SET, HACK!
+So, In today's session we'll be introducing something called CTF i.e Capture The Flag.
+Some might have heard about it and some may not but the thing that I assure you is that, you'll have a great experience, you'll get an exposure to something new and your interest might definitely get inclined towards the Cybersecurity domain.
+What we witnessed in the yesterday's session is base of what you'll be witnessing now BUT in a gamified version.
+So lets get started!
+
+
+
+
+SLIDE 2
+
+CTF (Capture The Flag) is a kind of information security competition that challenges contestants to solve a variety of tasks ranging from a scavenger hunt on wikipedia to basic programming exercises, to hacking your way into a server to steal data. In these challenges, the contestant is usually asked to find a specific piece of text that may be hidden on the server or behind a webpage. This goal is called the flag, hence the name!
+
+Like many competitions, the skill level for CTFs varies between the events. Some are targeted towards professionals with experience operating on cyber security teams. These typically offer a large cash reward and can be held at a specific physical location. Other events target the high school and college student range, sometimes offering monetary support for education to those that place highly in the competition!
+
+
+Cryptography - Typically involves decrypting or encrypting a piece of data
+Steganography - Tasked with finding information hidden in files or images
+Binary - Reverse engineering or exploiting a binary file
+Web - Exploiting web pages to find the flag
+Pwn - Exploiting a server to find the flag
+
+
+
+SLIDE 3
+
+TryHackMe is an online platform that teaches cyber security through short, gamified real-world labs. We have content for both complete beginners and seasoned hackers, encorporating guides and challenges to cater for different learning styles.
+
+so basically its an online learning platform where you could actually get started with your cybersecurity career.
+
+
+Similarly, Hack The Box is an online platform allowing you to test one's penetration testing skills and exchange ideas and methodologies with other members of similar interests. It contains several challenges of different levels and in that you need to take over the systems which is what we'll be doing today.
+
+
+
+
+
+
+
